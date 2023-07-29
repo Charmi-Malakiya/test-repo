@@ -1,9 +1,13 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import RtlLayout from "layouts/rtl";
 import AdminLayout from "layouts/admin";
 import AuthLayout from "layouts/auth";
+
+
+
 const App = () => {
   return (
     <ChakraProvider>

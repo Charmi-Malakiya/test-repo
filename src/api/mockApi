@@ -1,0 +1,38 @@
+// import { v4 as uuidv4 } from 'uuid';
+// // import { Contact } from '../types';
+// import { contactType } from 'types/contact';
+
+// let contacts: contactType[] = [];
+
+// export function addContact(contact: contactType): Promise<contactType> {
+//   return new Promise((resolve) => {
+//     const newContact = { ...contact, id: uuidv4() };
+//     contacts.push(newContact);
+//     resolve(newContact);
+//   });
+// }
+
+// export function getContacts(): Promise<contactType[]> {
+//   return new Promise((resolve) => {
+//     resolve(contacts);
+//   });
+// }
+
+// export function updateContact(contact: contactType): Promise<contactType> {
+//   return new Promise((resolve) => {
+//     const index = contacts.findIndex((c) => c.id === contact.id);
+//     if (index !== -1) {
+//       contacts[index] = contact;
+//       resolve(contact);
+//     } else {
+//       resolve(null);
+//     }
+//   });
+// }
+
+// export function deleteContact(id: string): Promise<void> {
+//   return new Promise((resolve) => {
+//     contacts = contacts.filter((c) => c.id !== id);
+//     resolve();
+//   });
+// }

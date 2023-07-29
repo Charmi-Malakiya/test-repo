@@ -1,8 +1,43 @@
 import PieChart from "components/charts/PieChart";
 import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
+import { AppDispatch } from "redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCovidData, selectCovidData } from "features/dashboard/dashboardSlice";
+import { useEffect, useState } from "react";
 
 const PieChartCard = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const covidData = useSelector(selectCovidData);
+  const [chartData, setChartData] = useState(null);
+  const [chartVal, setChartVal] = useState(null);
+
+  useEffect(() => {
+    dispatch(fetchCovidData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (covidData) {
+      const keysArray = Object.keys(covidData);
+      const colors = keysArray.map(() => generateRandomColor());
+      setChartData({
+        ...pieChartOptions,
+        ...chartData,
+        labels: keysArray,
+        colors: colors,
+        fill: {
+          colors: colors,
+        }
+      })
+      setChartVal(Object.values(covidData));
+    }
+  }, [covidData]);
+
+  function generateRandomColor() {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16); // Random number to hexadecimal string
+    return `#${randomColor.padStart(6, '0')}`; // Make sure the color code has 6 digits
+  }
+
   return (
     <Card extra="rounded-[20px] p-3">
       <div className="flex flex-row justify-between px-3 pt-2">
@@ -22,7 +57,9 @@ const PieChartCard = () => {
       </div>
 
       <div className="mb-auto flex h-[220px] w-full items-center justify-center">
-        <PieChart chartOptions={pieChartOptions} chartData={pieChartData} />
+        {covidData && chartVal &&
+          <PieChart chartOptions={chartData} chartData={chartVal} />
+        }
       </div>
       <div className="flex flex-row !justify-between rounded-2xl px-6 py-3 shadow-2xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex flex-col items-center justify-center">

@@ -24,7 +24,7 @@ const TotalSpent = () => {
       </div>
 
       <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden">
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <p className="mt-[20px] text-3xl font-bold text-navy-700 dark:text-white">
             $37.5K
           </p>
@@ -35,7 +35,7 @@ const TotalSpent = () => {
               <p className="text-sm font-bold text-green-500"> +2.45% </p>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="h-full w-full">
           <LineChart
             chartOptions={lineChartOptionsTotalSpent}
